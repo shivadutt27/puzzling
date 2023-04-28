@@ -1,0 +1,84 @@
+package puzzlingCode;
+
+import java.util.ArrayList;
+import java.util.Random;
+
+public class Puzzle {
+	
+	Random randMachine = new Random();
+	
+	public ArrayList<Integer> getTenRolls()
+	{
+		ArrayList<Integer> returnArray = new ArrayList<Integer>();
+		
+		for(int i=0; i<=10; i++)
+		{
+			int randNum = randMachine.nextInt(21);
+			
+			returnArray.add(randNum);
+			
+		}
+		
+		return returnArray;
+	}
+	
+
+	public char getRandomLetter()
+	{
+		 char returnChar = ' ';
+		 
+		 char[] alphabets = "abcdefghijklmnopqrstuvwxyz".toCharArray();
+		 
+		 int randNum = randMachine.nextInt(26);
+		 
+		// System.out.printf("\n Random Number is %d \n ", randNum);
+		 
+		 returnChar = alphabets[randNum];
+		 
+		 return returnChar;
+	}
+	
+	public String generatePassword()
+	{
+		char[] charArr = new char[8];
+		String returnString = ""; 
+		int counter = 0;
+		while(counter <8)
+		{
+			 charArr[counter] = getRandomLetter();
+			 counter++;
+			
+		}
+		returnString = String.valueOf(charArr);
+		return returnString;
+	}
+	
+	public String[] getNewPasswordSet(int len)
+	{
+		String[] returnArr = new String[len];
+		
+		for(int i=0; i<len; i++)
+		{
+			returnArr[i] = generatePassword();
+			
+		}
+		
+		return returnArr;
+		
+	}
+	
+	public String[] shuffleArray(String[] strArr)
+	{
+		int len = strArr.length;
+		for(int i=0; i<len; i++)
+		{
+			int randNum = randMachine.nextInt(len);
+			
+			String temp = strArr[i];
+			strArr[i] = strArr[randNum];
+			strArr[randNum] = temp;
+			
+		}
+		return strArr;
+	}
+}
